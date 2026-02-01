@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VANDSTAVOR | GEN 7</title>
     
+    <link rel="icon" type="image/png" href="https://i.ibb.co.com/k2XpVX94/Untitled-design-8.png">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -13,15 +15,24 @@
 
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #0a0a0a; color: white; }
-        .glass-nav { background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(10px); }
+        /* Latar belakang navbar transparan di awal */
+        .glass-nav { background: transparent; backdrop-filter: none; transition: all 0.4s ease; }
+        /* Saat di-scroll akan berubah menjadi gelap transparan */
+        .glass-nav.scrolled { background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.05); }
+        
         .text-gradient { background: linear-gradient(to right, #ff0000, #ffffff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .swiper-pagination-bullet { background: #ff0000; }
         .card-hover:hover { transform: translateY(-10px); transition: all 0.3s ease; }
+        .member-img { filter: grayscale(100%); transition: all 0.5s ease; }
+        .card-hover:hover .member-img { filter: grayscale(0%); transform: scale(1.05); }
+        
+        .swiper-scrollbar { background: rgba(255,255,255,0.1); }
+        .swiper-scrollbar-drag { background: #ff0000; }
     </style>
 </head>
 <body class="overflow-x-hidden">
 
-    <nav class="fixed w-full z-[100] transition-all duration-300 py-4 px-6 md:px-12 flex justify-between items-center glass-nav">
+    <nav class="fixed w-full max-w-full z-[100] py-4 px-4 md:px-12 flex justify-between items-center glass-nav">
         <div class="flex items-center gap-2">
             <div class="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center font-bold text-white">V</div>
             <span class="text-xl font-extrabold tracking-tighter italic">VANDSTAVOR <span class="text-red-600">GEN7</span></span>
@@ -29,6 +40,7 @@
         <div class="hidden md:flex space-x-8 font-medium text-sm uppercase tracking-widest">
             <a href="#home" class="hover:text-red-500 transition">Home</a>
             <a href="#about" class="hover:text-red-500 transition">About</a>
+            <a href="#members" class="hover:text-red-500 transition">Members</a>
             <a href="#garage" class="hover:text-red-500 transition">Album</a>
             <a href="#achievements" class="hover:text-red-500 transition">Achievements</a>
             <a href="#contact" class="hover:text-red-500 transition">Contact</a>
@@ -36,19 +48,19 @@
         <button class="md:hidden text-2xl"><i class="fa-solid fa-bars"></i></button>
     </nav>
 
-    <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
+    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1769738780235-2b87dc26326f?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="w-full h-full object-cover opacity-40" alt="Hero Background">
+            <img src="https://images.unsplash.com/photo-1769738780235-2b87dc26326f?q=80&w=870&auto=format&fit=crop" class="w-full h-full object-cover opacity-40" alt="Hero Background">
             <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/60 to-[#0a0a0a]"></div>
         </div>
         
         <div class="relative z-10 text-center px-4" data-aos="fade-up" data-aos-duration="1000">
             <h4 class="text-red-600 font-bold tracking-[0.3em] mb-4 uppercase">Memories & Togetherness</h4>
-            <h1 class="text-6xl md:text-8xl font-black mb-6 leading-tight">VANDSTAVOR <br> <span class="text-gradient">ALBUM</span></h1>
+            <h1 class="text-4xl sm: text -5xl md:text-8xl font-black mb-6 leading-tight">VANDSTAVOR <br> <span class="text-gradient">ALBUM</span></h1>
             <p class="max-w-2xl mx-auto text-gray-400 text-lg md:text-xl mb-10">"Togetherness and closeness are the keys to strong cooperation in living through the twists and turns of life".</p>
             <div class="flex flex-wrap justify-center gap-4">
-                <a href="#garage" class="bg-red-600 hover:bg-red-700 text-white px-10 py-4 rounded-full font-bold transition-all transform hover:scale-105">Explore Album</a>
-                <a href="#about" class="border border-white/30 hover:bg-white/10 text-white px-10 py-4 rounded-full font-bold transition-all">Learn Our Story</a>
+                <a href="#members" class="bg-red-600 hover:bg-red-700 text-white px-10 py-4 rounded-full font-bold transition-all transform hover:scale-105">Meet Members</a>
+                <a href="#garage" class="border border-white/30 hover:bg-white/10 text-white px-10 py-4 rounded-full font-bold transition-all">Explore Album</a>
             </div>
         </div>
     </section>
@@ -58,7 +70,7 @@
             <div data-aos="fade-right">
                 <h2 class="text-4xl font-extrabold mb-6">Born from <span class="text-red-600">Passion</span>, Driven by Innovation.</h2>
                 <p class="text-gray-400 leading-relaxed mb-6">
-                    VANDSTAVOR adalah angkatan ke-7 MA DAFI Sidoarjo, adalah simbol keteguhan dan persatuan. Berakar pada nilai kebersamaan, melangkah dengan tekad, dan bergerak menuju masa depan dengan karakter serta visi yang kuat..
+                    VANDSTAVOR adalah angkatan ke-7 MA DAFI Sidoarjo, adalah simbol keteguhan dan persatuan. Berakar pada nilai kebersamaan, melangkah dengan tekad, dan bergerak menuju masa depan dengan karakter serta visi yang kuat.
                 </p>
                 <div class="grid grid-cols-2 gap-6">
                     <div class="border-l-4 border-red-600 pl-4">
@@ -72,7 +84,7 @@
                 </div>
             </div>
             <div class="relative" data-aos="fade-left">
-                <img src="https://images.unsplash.com/photo-1769739496825-139ba80b40ce?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="rounded-2xl shadow-2xl" alt="Team Work">
+                <img src="https://images.unsplash.com/photo-1769739496825-139ba80b40ce?q=80&w=774&auto=format&fit=crop" class="rounded-2xl shadow-2xl" alt="Team Work">
                 <div class="absolute -bottom-6 -left-6 bg-red-600 p-8 rounded-2xl hidden md:block">
                     <p class="font-bold text-2xl text-white italic">"Excellence in every <br> joule of energy."</p>
                 </div>
@@ -80,9 +92,465 @@
         </div>
     </section>
 
+    <section id="members" class="py-24 bg-[#0a0a0a] overflow-hidden">
+        <div class="px-6 md:px-20 mb-12">
+            <h2 class="text-5xl font-black italic uppercase" data-aos="fade-right">OUR <span class="text-red-600">MEMBERS</span></h2>
+            <p class="text-gray-500 mt-2 italic" data-aos="fade-right" data-aos-delay="200">Swipe to meet the 34 legends (Use 2 fingers on trackpad)</p>
+        </div>
+
+        <div class="swiper memberSwiper px-4 md:px-20">
+            <div class="swiper-wrapper py-10">
+                
+                <div class="swiper-slide">
+                    <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
+                        <div class="h-80 overflow-hidden bg-gray-900">
+                            <img src="https://i.ibb.co.com/mYYVLBf/putra-30.jpg" class="w-full h-full object-cover member-img" alt="Member 1">
+                        </div>
+                        <div class="p-6 text-center">
+                            <h3 class="text-xl font-bold uppercase italic tracking-wider">MUHAMMAD AKMALUDDIN ROSYID</h3>
+                            <p class="text-red-600 text-[10px] font-black tracking-[0.2em] mb-3 uppercase">Vandstavor Leader</p>
+                            <p class="text-gray-400 text-sm italic">"Quote pribadi di sini."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
+                        <div class="h-80 overflow-hidden bg-gray-900">
+                            <img src="https://i.ibb.co.com/PZW1fCCV/putra-14.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
+                        </div>
+                        <div class="p-6 text-center">
+                            <h3 class="text-xl font-bold uppercase italic tracking-wider">HANIF IKRAMIYA NABIL</h3>
+                            <p class="text-red-600 text-[10px] font-black tracking-[0.2em] mb-3 uppercase">Vandstavor Secretary</p>
+                            <p class="text-gray-400 text-sm italic">"Quote pribadi di sini."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
+                        <div class="h-80 overflow-hidden bg-gray-900">
+                            <img src="https://i.ibb.co.com/RpR4y9vG/putra-32.jpg" class="w-full h-full object-cover member-img" alt="Member 3">
+                        </div>
+                        <div class="p-6 text-center">
+                            <h3 class="text-xl font-bold uppercase italic tracking-wider">RIZKY JAYA PUTRA PRASETYO</h3>
+                            <p class="text-red-600 text-[10px] font-black tracking-[0.2em] mb-3 uppercase">Vandstavor Secretary</p>
+                            <p class="text-gray-400 text-sm italic">"Quote pribadi di sini."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
+                        <div class="h-80 overflow-hidden bg-gray-900">
+                            <img src="https://i.ibb.co.com/4RvMqKGc/putra-15.jpg" class="w-full h-full object-cover member-img" alt="Member 4">
+                        </div>
+                        <div class="p-6 text-center">
+                            <h3 class="text-xl font-bold uppercase italic tracking-wider">FADHIL MUHAMMAD HARUN</h3>
+                            <p class="text-red-600 text-[10px] font-black tracking-[0.2em] mb-3 uppercase">Vandstavor Treasurer</p>
+                            <p class="text-gray-400 text-sm italic">"Keberanian sejati bukan tentang tak pernah takut, tetapi tetap berdiri tegak saat rasa takut itu datang."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
+                        <div class="h-80 overflow-hidden bg-gray-900">
+                            <img src="https://i.ibb.co.com/3yqMgZ2N/putra-8.jpg" class="w-full h-full object-cover member-img" alt="Member 5">
+                        </div>
+                        <div class="p-6 text-center">
+                            <h3 class="text-xl font-bold uppercase italic tracking-wider">ADEL ALFA SAVERO</h3>
+                            <p class="text-red-600 text-[10px] font-black tracking-[0.2em] mb-3 uppercase">Vandstavor Member</p>
+                            <p class="text-gray-400 text-sm italic">"Quote pribadi di sini."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
+                        <div class="h-80 overflow-hidden bg-gray-900">
+                            <img src="https://i.ibb.co.com/2YFhDX6k/putra-10.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
+                        </div>
+                        <div class="p-6 text-center">
+                            <h3 class="text-xl font-bold uppercase italic tracking-wider">AHMAD ABDUL KHODIR JAELANI</h3>
+                            <p class="text-red-600 text-[10px] font-black tracking-[0.2em] mb-3 uppercase">Vandstavor Member</p>
+                            <p class="text-gray-400 text-sm italic">"Quote pribadi di sini."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
+                        <div class="h-80 overflow-hidden bg-gray-900">
+                            <img src="https://i.ibb.co.com/nsG2ZjSD/putra-7.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
+                        </div>
+                        <div class="p-6 text-center">
+                            <h3 class="text-xl font-bold uppercase italic tracking-wider">AHMAD ALFIANSYAH SUBASTIAN</h3>
+                            <p class="text-red-600 text-[10px] font-black tracking-[0.2em] mb-3 uppercase">Vandstavor Member</p>
+                            <p class="text-gray-400 text-sm italic">"Quote pribadi di sini."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
+                        <div class="h-80 overflow-hidden bg-gray-900">
+                            <img src="LINK_GAMBAR_2" class="w-full h-full object-cover member-img" alt="Member 2">
+                        </div>
+                        <div class="p-6 text-center">
+                            <h3 class="text-xl font-bold uppercase italic tracking-wider">AHMAD NIZZAR FAIZ</h3>
+                            <p class="text-red-600 text-[10px] font-black tracking-[0.2em] mb-3 uppercase">Vandstavor Member</p>
+                            <p class="text-gray-400 text-sm italic">"Quote pribadi di sini."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
+                        <div class="h-80 overflow-hidden bg-gray-900">
+                            <img src="https://i.ibb.co.com/DPbRrq06/putra-11.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
+                        </div>
+                        <div class="p-6 text-center">
+                            <h3 class="text-xl font-bold uppercase italic tracking-wider">DHIYAA EL HAQ</h3>
+                            <p class="text-red-600 text-[10px] font-black tracking-[0.2em] mb-3 uppercase">Vandstavor Member</p>
+                            <p class="text-gray-400 text-sm italic">"Quote pribadi di sini."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
+                        <div class="h-80 overflow-hidden bg-gray-900">
+                            <img src="https://i.ibb.co.com/HLJwq1f9/putra-17.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
+                        </div>
+                        <div class="p-6 text-center">
+                            <h3 class="text-xl font-bold uppercase italic tracking-wider">FAIZAN FATAH FIRMANSYAH</h3>
+                            <p class="text-red-600 text-[10px] font-black tracking-[0.2em] mb-3 uppercase">Vandstavor Member</p>
+                            <p class="text-gray-400 text-sm italic">"Cah lanang ra oleh tumbang."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
+                        <div class="h-80 overflow-hidden bg-gray-900">
+                            <img src="https://i.ibb.co.com/VcDtNbYy/putra-34.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
+                        </div>
+                        <div class="p-6 text-center">
+                            <h3 class="text-xl font-bold uppercase italic tracking-wider">FARHAN RAMZY DANADYAKSA</h3>
+                            <p class="text-red-600 text-[10px] font-black tracking-[0.2em] mb-3 uppercase">Vandstavor Member</p>
+                            <p class="text-gray-400 text-sm italic">"Apa bila sesuatu yang engkau senangi tidak terjadi, maka senangi lah apa yang terjadi."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
+                        <div class="h-80 overflow-hidden bg-gray-900">
+                            <img src="https://i.ibb.co.com/q3BjHygc/putra-16-1.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
+                        </div>
+                        <div class="p-6 text-center">
+                            <h3 class="text-xl font-bold uppercase italic tracking-wider">FIKRI TRI ARDIANSYAH</h3>
+                            <p class="text-red-600 text-[10px] font-black tracking-[0.2em] mb-3 uppercase">Vandstavor Member</p>
+                            <p class="text-gray-400 text-sm italic">"Kalah banter wani nguber."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
+                        <div class="h-80 overflow-hidden bg-gray-900">
+                            <img src="https://i.ibb.co.com/Kc3dDnQZ/putra-26.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
+                        </div>
+                        <div class="p-6 text-center">
+                            <h3 class="text-xl font-bold uppercase italic tracking-wider">HARUN YAHYA</h3>
+                            <p class="text-red-600 text-[10px] font-black tracking-[0.2em] mb-3 uppercase">Vandstavor Member</p>
+                            <p class="text-gray-400 text-sm italic">"Quote pribadi di sini."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
+                        <div class="h-80 overflow-hidden bg-gray-900">
+                            <img src="https://i.ibb.co.com/JW4Z8sqR/putra-33.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
+                        </div>
+                        <div class="p-6 text-center">
+                            <h3 class="text-xl font-bold uppercase italic tracking-wider">HARYA FARUQ ARRAIS</h3>
+                            <p class="text-red-600 text-[10px] font-black tracking-[0.2em] mb-3 uppercase">Vandstavor Member</p>
+                            <p class="text-gray-400 text-sm italic">"Quote pribadi di sini."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
+                        <div class="h-80 overflow-hidden bg-gray-900">
+                            <img src="https://i.ibb.co.com/LLQJT7X/putra-19.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
+                        </div>
+                        <div class="p-6 text-center">
+                            <h3 class="text-xl font-bold uppercase italic tracking-wider">HASYA FATHORONIY</h3>
+                            <p class="text-red-600 text-[10px] font-black tracking-[0.2em] mb-3 uppercase">Vandstavor Member</p>
+                            <p class="text-gray-400 text-sm italic">"Quote pribadi di sini."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
+                        <div class="h-80 overflow-hidden bg-gray-900">
+                            <img src="https://i.ibb.co.com/tMs3GMFT/putra-18.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
+                        </div>
+                        <div class="p-6 text-center">
+                            <h3 class="text-xl font-bold uppercase italic tracking-wider">HILMI MUKHLAS SANDRIA</h3>
+                            <p class="text-red-600 text-[10px] font-black tracking-[0.2em] mb-3 uppercase">Vandstavor Member</p>
+                            <p class="text-gray-400 text-sm italic">"Quote pribadi di sini."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
+                        <div class="h-80 overflow-hidden bg-gray-900">
+                            <img src="https://i.ibb.co.com/M5QXbnMK/putra-28.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
+                        </div>
+                        <div class="p-6 text-center">
+                            <h3 class="text-xl font-bold uppercase italic tracking-wider">MIKAIL JUNOV</h3>
+                            <p class="text-red-600 text-[10px] font-black tracking-[0.2em] mb-3 uppercase">Vandstavor Member</p>
+                            <p class="text-gray-400 text-sm italic">"Quote pribadi di sini."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
+                        <div class="h-80 overflow-hidden bg-gray-900">
+                            <img src="https://i.ibb.co.com/tM1XZz84/putra-13.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
+                        </div>
+                        <div class="p-6 text-center">
+                            <h3 class="text-xl font-bold uppercase italic tracking-wider">MOCH ALANDA FIKRI</h3>
+                            <p class="text-red-600 text-[10px] font-black tracking-[0.2em] mb-3 uppercase">Vandstavor Member</p>
+                            <p class="text-gray-400 text-sm italic">"Quote pribadi di sini."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
+                        <div class="h-80 overflow-hidden bg-gray-900">
+                            <img src="https://i.ibb.co.com/MyF79BXX/putra-22.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
+                        </div>
+                        <div class="p-6 text-center">
+                            <h3 class="text-xl font-bold uppercase italic tracking-wider">MUHAMMAD FAIZ</h3>
+                            <p class="text-red-600 text-[10px] font-black tracking-[0.2em] mb-3 uppercase">Vandstavor Member</p>
+                            <p class="text-gray-400 text-sm italic">"Quote pribadi di sini."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
+                        <div class="h-80 overflow-hidden bg-gray-900">
+                            <img src="https://i.ibb.co.com/7NS2ckGd/putra-23.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
+                        </div>
+                        <div class="p-6 text-center">
+                            <h3 class="text-xl font-bold uppercase italic tracking-wider">MUHAMMAD FARREL ARYA SANTOSA</h3>
+                            <p class="text-red-600 text-[10px] font-black tracking-[0.2em] mb-3 uppercase">Vandstavor Member</p>
+                            <p class="text-gray-400 text-sm italic">"Quote pribadi di sini."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
+                        <div class="h-80 overflow-hidden bg-gray-900">
+                            <img src="https://i.ibb.co.com/RV9z2Ls/putra-21.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
+                        </div>
+                        <div class="p-6 text-center">
+                            <h3 class="text-xl font-bold uppercase italic tracking-wider">RAYHAN SYAH PUTRA</h3>
+                            <p class="text-red-600 text-[10px] font-black tracking-[0.2em] mb-3 uppercase">Vandstavor Member</p>
+                            <p class="text-gray-400 text-sm italic">"Quote pribadi di sini."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
+                        <div class="h-80 overflow-hidden bg-gray-900">
+                            <img src="https://i.ibb.co.com/LD7qghXQ/putra-27.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
+                        </div>
+                        <div class="p-6 text-center">
+                            <h3 class="text-xl font-bold uppercase italic tracking-wider">RIFQY VIRDAN AL MUZAKKI</h3>
+                            <p class="text-red-600 text-[10px] font-black tracking-[0.2em] mb-3 uppercase">Vandstavor Member</p>
+                            <p class="text-gray-400 text-sm italic">"Quote pribadi di sini."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
+                        <div class="h-80 overflow-hidden bg-gray-900">
+                            <img src="https://i.ibb.co.com/mrdyfXCx/putra-29.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
+                        </div>
+                        <div class="p-6 text-center">
+                            <h3 class="text-xl font-bold uppercase italic tracking-wider">RIZKY MUHAMMAD</h3>
+                            <p class="text-red-600 text-[10px] font-black tracking-[0.2em] mb-3 uppercase">Vandstavor Member</p>
+                            <p class="text-gray-400 text-sm italic">"إِنَّ مَعَ الْعُسْرِ يُسْرًا."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
+                        <div class="h-80 overflow-hidden bg-gray-900">
+                            <img src="https://i.ibb.co.com/gbTGhtV3/putra-24.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
+                        </div>
+                        <div class="p-6 text-center">
+                            <h3 class="text-xl font-bold uppercase italic tracking-wider">SULTHAN RAUF AL RASYID</h3>
+                            <p class="text-red-600 text-[10px] font-black tracking-[0.2em] mb-3 uppercase">Vandstavor Member</p>
+                            <p class="text-gray-400 text-sm italic">"Quote pribadi di sini."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
+                        <div class="h-80 overflow-hidden bg-gray-900">
+                            <img src="https://i.ibb.co.com/217VtSHZ/putra-25.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
+                        </div>
+                        <div class="p-6 text-center">
+                            <h3 class="text-xl font-bold uppercase italic tracking-wider">VIGO LABIB RAMADAN</h3>
+                            <p class="text-red-600 text-[10px] font-black tracking-[0.2em] mb-3 uppercase">Vandstavor Member</p>
+                            <p class="text-gray-400 text-sm italic">"Quote pribadi di sini."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
+                        <div class="h-80 overflow-hidden bg-gray-900">
+                            <img src="https://i.ibb.co.com/k63wr9Sv/putra-31.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
+                        </div>
+                        <div class="p-6 text-center">
+                            <h3 class="text-xl font-bold uppercase italic tracking-wider">ZHILLAN AKHDAN AL KHAIR</h3>
+                            <p class="text-red-600 text-[10px] font-black tracking-[0.2em] mb-3 uppercase">Vandstavor Member</p>
+                            <p class="text-gray-400 text-sm italic">"Quote pribadi di sini."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
+                        <div class="h-80 overflow-hidden bg-gray-900">
+                            <img src="https://i.ibb.co.com/0V85fqjH/putra-9.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
+                        </div>
+                        <div class="p-6 text-center">
+                            <h3 class="text-xl font-bold uppercase italic tracking-wider">DAFFA NURRAFI RAMADHAN</h3>
+                            <p class="text-red-600 text-[10px] font-black tracking-[0.2em] mb-3 uppercase">Vandstavor Member</p>
+                            <p class="text-gray-400 text-sm italic">"Quote pribadi di sini."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
+                        <div class="h-80 overflow-hidden bg-gray-900">
+                            <img src="https://i.ibb.co.com/CK4XyYt0/putra-5.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
+                        </div>
+                        <div class="p-6 text-center">
+                            <h3 class="text-xl font-bold uppercase italic tracking-wider">FAREVO AHMADDINEJAD</h3>
+                            <p class="text-red-600 text-[10px] font-black tracking-[0.2em] mb-3 uppercase">Vandstavor Member</p>
+                            <p class="text-gray-400 text-sm italic">"Quote pribadi di sini."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
+                        <div class="h-80 overflow-hidden bg-gray-900">
+                            <img src="https://i.ibb.co.com/5xfgntk2/putra-4.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
+                        </div>
+                        <div class="p-6 text-center">
+                            <h3 class="text-xl font-bold uppercase italic tracking-wider">FIRJATULLAH MUHAMMAD FIKRUL JADID</h3>
+                            <p class="text-red-600 text-[10px] font-black tracking-[0.2em] mb-3 uppercase">Vandstavor Member</p>
+                            <p class="text-gray-400 text-sm italic">"Quote pribadi di sini."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
+                        <div class="h-80 overflow-hidden bg-gray-900">
+                            <img src="https://i.ibb.co.com/7d1vBSBN/putra-6.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
+                        </div>
+                        <div class="p-6 text-center">
+                            <h3 class="text-xl font-bold uppercase italic tracking-wider">MUHAMMAD ARDIANSYAH</h3>
+                            <p class="text-red-600 text-[10px] font-black tracking-[0.2em] mb-3 uppercase">Vandstavor Member</p>
+                            <p class="text-gray-400 text-sm italic">"Quote pribadi di sini."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
+                        <div class="h-80 overflow-hidden bg-gray-900">
+                            <img src="https://i.ibb.co.com/359KNPHs/putra-3.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
+                        </div>
+                        <div class="p-6 text-center">
+                            <h3 class="text-xl font-bold uppercase italic tracking-wider">MUHAMMAD ARIQ MUBARAK</h3>
+                            <p class="text-red-600 text-[10px] font-black tracking-[0.2em] mb-3 uppercase">Vandstavor Member</p>
+                            <p class="text-gray-400 text-sm italic">"Quote pribadi di sini."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
+                        <div class="h-80 overflow-hidden bg-gray-900">
+                            <img src="https://i.ibb.co.com/TDH5y5LZ/putra-1.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
+                        </div>
+                        <div class="p-6 text-center">
+                            <h3 class="text-xl font-bold uppercase italic tracking-wider">MUHAMMAD HAFIZH AL AYYASY</h3>
+                            <p class="text-red-600 text-[10px] font-black tracking-[0.2em] mb-3 uppercase">Vandstavor Member</p>
+                            <p class="text-gray-400 text-sm italic">"Quote pribadi di sini."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
+                        <div class="h-80 overflow-hidden bg-gray-900">
+                            <img src="https://i.ibb.co.com/dnRvj1C/putra-12.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
+                        </div>
+                        <div class="p-6 text-center">
+                            <h3 class="text-xl font-bold uppercase italic tracking-wider">RAFIF RAGHID RABBANI</h3>
+                            <p class="text-red-600 text-[10px] font-black tracking-[0.2em] mb-3 uppercase">Vandstavor Member</p>
+                            <p class="text-gray-400 text-sm italic">"Quote pribadi di sini."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
+                        <div class="h-80 overflow-hidden bg-gray-900">
+                            <img src="https://i.ibb.co.com/27C6TzFx/putra-2.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
+                        </div>
+                        <div class="p-6 text-center">
+                            <h3 class="text-xl font-bold uppercase italic tracking-wider">WAHYU RIZQI HABIBULLAH</h3>
+                            <p class="text-red-600 text-[10px] font-black tracking-[0.2em] mb-3 uppercase">Vandstavor Member</p>
+                            <p class="text-gray-400 text-sm italic">"Quote pribadi di sini."</p>
+                        </div>
+                    </div>
+                </div>
+
+                </div>
+            <div class="swiper-scrollbar"></div>
+        </div>
+    </section>
+
     <section id="garage" class="py-24 bg-[#111] overflow-hidden">
         <div class="text-center mb-16" data-aos="fade-up">
-            <h2 class="text-5xl font-black italic">OUR <span class="text-red-600">ALBUM</span></h2>
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-black italic">OUR <span class="text-red-600">ALBUM</span></h2>
             <p class="text-gray-500 mt-2">Always together until the end of life.</p>
         </div>
 
@@ -93,7 +561,7 @@
                     <div class="p-8">
                         <span class="text-red-600 font-bold text-sm">HAPPINESS</span>
                         <h3 class="text-3xl font-bold mt-2 mb-4">Vandstavor X Evo</h3>
-                        <p class="text-gray-400 mb-6 text-sm">Sense of inner peace and joy that comes from gratitude, meaningful moments, and accepting life as it is.</p>
+                        <p class="text-gray-400 mb-6 text-sm">sense of inner peace and joy that comes from gratitude, meaningful moments, and accepting life as it is.</p>
                         <div class="flex justify-between border-t border-white/10 pt-4">
                             <div><p class="text-xs text-gray-500">CATEGORY</p><p class="font-bold">COMMON</p></div>
                             <div><p class="text-xs text-gray-500">YEARS</p><p class="font-bold">2023</p></div>
@@ -115,11 +583,11 @@
                 </div>
 
                 <div class="swiper-slide bg-[#1a1a1a] rounded-3xl overflow-hidden border border-white/5">
-                    <img src="https://i.ibb.co.com/zVb96DFq/Whats-App-Image-2026-01-30-at-12-49-41-1.jpg" class="w-full h-64 object-cover" alt="Vandstavor Album 3">
+                    <img src="https://i.ibb.co.com/zVb96DFq/Whats-App-Image-2026-01-30-at-12-49-41-1.jpg" class="w-full h-64 object-cover" alt="Vandstavor XII Gold">
                     <div class="p-8">
                         <span class="text-red-600 font-bold text-sm">TOGETHERNESS</span>
                         <h3 class="text-3xl font-bold mt-2 mb-4">Vandstavor XII Gold</h3>
-                        <p class="text-gray-400 mb-6 text-sm">spirit of unity and connection, built through mutual support, shared purpose, and growing stronger by moving forward as one.</p>
+                        <p class="text-gray-400 mb-6 text-sm">pirit of unity and connection, built through mutual support, shared purpose, and growing stronger by moving forward as one.</p>
                         <div class="flex justify-between border-t border-white/10 pt-4">
                             <div><p class="text-xs text-gray-500">CATEGORY</p><p class="font-bold">LEGEND</p></div>
                             <div><p class="text-xs text-gray-500">YEARS</p><p class="font-bold">2026</p></div>
@@ -162,24 +630,20 @@
             <h2 class="text-5xl font-black italic uppercase" data-aos="fade-right">Winner's <br><span class="text-red-600">Podium</span></h2>
             <p class="text-gray-400 max-w-md text-right" data-aos="fade-left">Consistently bringing home trophies from national arenas.</p>
         </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-            <div class="bg-white/5 p-8 rounded-2xl card-hover border border-white/10" data-aos="zoom-in" data-aos-delay="100">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-white/5 p-8 rounded-2xl card-hover border border-white/10" data-aos="zoom-in">
                 <div class="text-red-600 text-4xl mb-4"><i class="fa-solid fa-trophy"></i></div>
                 <h3 class="text-xl font-bold mb-2">1st Futsal Boarding School 2025</h3>
-                <p class="text-gray-500 text-sm italic mb-4 font-semibold uppercase tracking-wider">Futsal Antar Pesantren</p>
                 <p class="text-gray-400 text-sm">Sukodono, Sidoarjo. Menunjukkan performa permainan futsal yang luar biasa.</p>
             </div>
             <div class="bg-white/5 p-8 rounded-2xl card-hover border border-white/10" data-aos="zoom-in" data-aos-delay="200">
                 <div class="text-red-600 text-4xl mb-4"><i class="fa-solid fa-trophy"></i></div>
                 <h3 class="text-xl font-bold mb-2">1st Mathematics Olympiad 2025</h3>
-                <p class="text-gray-500 text-sm italic mb-4 font-semibold uppercase tracking-wider">Olimpiade Matematika Nasional</p>
-                <p class="text-gray-400 text-sm">Kemampuan membantai soal matematika yang sangat sulit.</p>
+                <p class="text-gray-400 text-sm">Kemampuan membantai soal matematika yang sangat sulit tingkat nasional.</p>
             </div>
             <div class="bg-white/5 p-8 rounded-2xl card-hover border border-white/10" data-aos="zoom-in" data-aos-delay="300">
                 <div class="text-red-600 text-4xl mb-4"><i class="fa-solid fa-trophy"></i></div>
                 <h3 class="text-xl font-bold mb-2">2nd MFQ 2024</h3>
-                <p class="text-gray-500 text-sm italic mb-4 font-semibold uppercase tracking-wider">Musabaqah Fahmil Qur'an Kecamatan</p>
                 <p class="text-gray-400 text-sm">Memahami dan menjelaskan isi Al-Qur'an dengan sangat baik.</p>
             </div>
         </div>
@@ -191,28 +655,28 @@
                 <h2 class="text-3xl font-black italic mb-6">VANDSTAVOR <span class="text-red-600">GEN7</span></h2>
                 <p class="text-gray-500 max-w-sm mb-6">MA DAFI PESANTREN AL-QUR'AN SCIENCE, Sukodono, Sidoarjo, Jawa Timur, Indonesia.</p>
                 <div class="flex space-x-4 text-2xl">
-                    <a href="https://www.instagram.com/vandstavor/" target="_blank" rel="noopener noreferrer" class="text-white hover:text-red-600 transition">
-                        <i class="fa-brands fa-instagram"></i>
-                    </a>
+                    <a href="https://www.instagram.com/vandstavor/" target="_blank" class="text-white hover:text-red-600 transition"><i class="fa-brands fa-instagram"></i></a>
                     <a href="#" class="text-white hover:text-red-600 transition"><i class="fa-brands fa-tiktok"></i></a>
                     <a href="#" class="text-white hover:text-red-600 transition"><i class="fa-brands fa-youtube"></i></a>
-                    <a href="#" class="text-white hover:text-red-600 transition"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="#" class="text-white hover:text-red-600 transition"><i class="fa-brands fa-linkedin-in"></i></a>
                 </div>
             </div>
             <div>
-                <h4 class="font-bold mb-6 text-red-600">Quick Links</h4>
+                <h4 class="font-bold mb-6 text-red-600 italic uppercase">Quick Links</h4>
                 <ul class="space-y-4 text-gray-400 text-sm">
                     <li><a href="#" class="hover:text-white transition">Vandstavor Info</a></li>
-                    <li><a href="#" class="hover:text-white transition">Our Team</a></li>
-                    <li><a href="#" class="hover:text-white transition">Sponsorship</a></li>
-                    <li><a href="#" class="hover:text-white transition">Privacy Policy</a></li>
+                    <li><a href="#members" class="hover:text-white transition">Our Team</a></li>
+                    <li><a href="#" class="hover:text-white transition font-semibold">Sponsorship</a></li>
+                    <li><a href="#" class="hover:text-white transition font-semibold">Privacy Policy</a></li>
                 </ul>
             </div>
             <div>
-                <h4 class="font-bold mb-6 text-red-600">Contact Us</h4>
-                <p class="text-gray-400 text-sm mb-4">vandstavor.partnership@gmail.com</p>
-                <p class="text-gray-400 text-sm">+62 815-5401-6204</p>
-                <button class="mt-4 px-6 py-2 bg-red-600 text-xs font-bold rounded-lg uppercase tracking-widest">Subscribe</button>
+                <h4 class="font-bold mb-6 text-red-600 italic uppercase">Contact Us</h4>
+                <p class="text-gray-400 text-sm mb-2">vandstavor.partnership@gmail.com</p>
+                <p class="text-gray-400 text-sm mb-6">+62 815-5401-6204</p>
+                <button class="bg-[#e32d2d] hover:bg-red-700 text-white px-8 py-3 rounded-lg font-black tracking-widest text-sm transition-transform active:scale-95">
+                    SUBSCRIBE
+                </button>
             </div>
         </div>
         <div class="text-center text-gray-600 text-xs border-t border-white/5 pt-10">
@@ -223,14 +687,23 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <script>
-        // Init Animation
         AOS.init({ once: true });
 
-        // Init Swiper
-        const swiper = new Swiper('.vehicleSwiper', {
+        const memberSwiper = new Swiper('.memberSwiper', {
+            slidesPerView: 1,
+            spaceBetween: 12,
+            mousewheel: { forceToAxis: true },
+            scrollbar: { el: '.swiper-scrollbar', draggable: true },
+            breakpoints: {
+                640: { slidesPerView: 2.2 },
+                1024: { slidesPerView: 4.2 }
+            }
+        });
+
+        const vehicleSwiper = new Swiper('.vehicleSwiper', {
             slidesPerView: 1,
             spaceBetween: 30,
-            centeredSlides: true,
+            centeredSlides: false,
             pagination: { el: '.swiper-pagination', clickable: true },
             breakpoints: {
                 768: { slidesPerView: 2 },
@@ -238,15 +711,15 @@
             }
         });
 
-        // Navbar Scroll Effect
+        // Script untuk mengatur transparansi navbar saat scroll
         window.addEventListener('scroll', function() {
             const nav = document.querySelector('nav');
             if (window.scrollY > 50) {
-                nav.classList.add('py-2', 'bg-black');
-                nav.classList.remove('py-4', 'bg-transparent');
+                nav.classList.add('scrolled', 'py-4');
+                nav.classList.remove('py-6');
             } else {
-                nav.classList.add('py-4', 'bg-transparent');
-                nav.classList.remove('py-2', 'bg-black');
+                nav.classList.remove('scrolled', 'py-4');
+                nav.classList.add('py-6');
             }
         });
     </script>
