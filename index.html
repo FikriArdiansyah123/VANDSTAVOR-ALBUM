@@ -14,11 +14,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #0a0a0a; color: white; }
+        body { font-family: 'Inter', sans-serif; background-color: black; color: white; }
         /* Latar belakang navbar transparan di awal */
         .glass-nav { background: transparent; backdrop-filter: none; transition: all 0.4s ease; }
         /* Saat di-scroll akan berubah menjadi gelap transparan */
-        .glass-nav.scrolled { background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .glass-nav.scrolled { background: transparent; backdrop-filter: none; border-bottom: none; }
         
         .text-gradient { background: linear-gradient(to right, #ff0000, #ffffff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .swiper-pagination-bullet { background: #ff0000; }
@@ -32,7 +32,7 @@
 </head>
 <body class="overflow-x-hidden">
 
-    <nav class="fixed w-full max-w-full z-[100] py-4 px-4 md:px-12 flex justify-between items-center glass-nav">
+    <nav class="sticky top-0 w-full max-w-full z-[100] py-4 px-4 md:px-12 flex justify-between items-center glass-nav">
         <div class="flex items-center gap-2">
             <div class="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center font-bold text-white">V</div>
             <span class="text-xl font-extrabold tracking-tighter italic">VANDSTAVOR <span class="text-red-600">GEN7</span></span>
@@ -48,22 +48,51 @@
         <button class="md:hidden text-2xl"><i class="fa-solid fa-bars"></i></button>
     </nav>
 
-    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1769738780235-2b87dc26326f?q=80&w=870&auto=format&fit=crop" class="w-full h-full object-cover opacity-40" alt="Hero Background">
-            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/60 to-[#0a0a0a]"></div>
-        </div>
-        
-        <div class="relative z-10 text-center px-4" data-aos="fade-up" data-aos-duration="1000">
-            <h4 class="text-red-600 font-bold tracking-[0.3em] mb-4 uppercase">Memories & Togetherness</h4>
-            <h1 class="text-4xl sm: text -5xl md:text-8xl font-black mb-6 leading-tight">VANDSTAVOR <br> <span class="text-gradient">ALBUM</span></h1>
-            <p class="max-w-2xl mx-auto text-gray-400 text-lg md:text-xl mb-10">"Togetherness and closeness are the keys to strong cooperation in living through the twists and turns of life".</p>
-            <div class="flex flex-wrap justify-center gap-4">
-                <a href="#members" class="bg-red-600 hover:bg-red-700 text-white px-10 py-4 rounded-full font-bold transition-all transform hover:scale-105">Meet Members</a>
-                <a href="#garage" class="border border-white/30 hover:bg-white/10 text-white px-10 py-4 rounded-full font-bold transition-all">Explore Album</a>
+    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+
+    <!-- VIDEO BACKGROUND -->
+    <video 
+        class="absolute inset-0 w-full h-full object-cover z-0 opacity-40"
+        autoplay
+        muted
+        loop
+        playsinline
+    >
+        <source src="https://res.cloudinary.com/ddc1rmczp/video/upload/v1769928783/WhatsApp_Video_2026-01-25_at_15.41.21_tgtuhn.mp4" type="video/mp4">
+        Browser kamu tidak mendukung video.
+    </video>
+
+    <!-- GRADIENT OVERLAY -->
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/60 to-[#0a0a0a] z-0"></div>
+
+    <!-- CONTENT -->
+    <div class="relative z-10 text-center px-4" data-aos="fade-up" data-aos-duration="1000">
+        <h4 class="text-red-600 font-bold tracking-[0.3em] mb-4 uppercase">
+            Memories & Togetherness
+        </h4>
+
+        <h1 class="text-4xl sm:text-5xl md:text-8xl font-black mb-6 leading-tight">
+            VANDSTAVOR <br>
+            <span class="text-gradient">ALBUM</span>
+        </h1>
+
+        <p class="max-w-2xl mx-auto text-gray-400 text-lg md:text-xl mb-10">
+            "Togetherness and closeness are the keys to strong cooperation in living through the twists and turns of life".
+        </p>
+
+        <div class="flex flex-wrap justify-center gap-4">
+            <a href="#members"
+               class="bg-red-600 hover:bg-red-700 text-white px-10 py-4 rounded-full font-bold transition-all transform hover:scale-105">
+                Meet Members
+            </a>
+            <a href="#garage"
+               class="border border-white/30 hover:bg-white/10 text-white px-10 py-4 rounded-full font-bold transition-all">
+                Explore Album
+                </a>
             </div>
         </div>
     </section>
+
 
     <section id="about" class="py-24 px-6 md:px-20">
         <div class="grid md:grid-cols-2 gap-16 items-center">
@@ -104,7 +133,7 @@
                 <div class="swiper-slide">
                     <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
                         <div class="h-80 overflow-hidden bg-gray-900">
-                            <img src="https://i.ibb.co.com/mYYVLBf/putra-30.jpg" class="w-full h-full object-cover member-img" alt="Member 1">
+                            <img src="https://res.cloudinary.com/ddc1rmczp/image/upload/f_auto,q_auto,w_800/v1769918773/putra_30_w4avsk.jpg" class="w-full h-full object-cover member-img" alt="Member 1">
                         </div>
                         <div class="p-6 text-center">
                             <h3 class="text-xl font-bold uppercase italic tracking-wider">MUHAMMAD AKMALUDDIN ROSYID</h3>
@@ -117,7 +146,7 @@
                 <div class="swiper-slide">
                     <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
                         <div class="h-80 overflow-hidden bg-gray-900">
-                            <img src="https://i.ibb.co.com/PZW1fCCV/putra-14.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
+                            <img src="https://res.cloudinary.com/ddc1rmczp/image/upload/f_auto,q_auto,w_800/v1769918779/putra_14_ibvdgl.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
                         </div>
                         <div class="p-6 text-center">
                             <h3 class="text-xl font-bold uppercase italic tracking-wider">HANIF IKRAMIYA NABIL</h3>
@@ -130,7 +159,7 @@
                 <div class="swiper-slide">
                     <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
                         <div class="h-80 overflow-hidden bg-gray-900">
-                            <img src="https://i.ibb.co.com/RpR4y9vG/putra-32.jpg" class="w-full h-full object-cover member-img" alt="Member 3">
+                            <img src="https://res.cloudinary.com/ddc1rmczp/image/upload/f_auto,q_auto,w_800/v1769918782/putra_32_ocxiti.jpg" class="w-full h-full object-cover member-img" alt="Member 3">
                         </div>
                         <div class="p-6 text-center">
                             <h3 class="text-xl font-bold uppercase italic tracking-wider">RIZKY JAYA PUTRA PRASETYO</h3>
@@ -143,7 +172,7 @@
                 <div class="swiper-slide">
                     <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
                         <div class="h-80 overflow-hidden bg-gray-900">
-                            <img src="https://i.ibb.co.com/4RvMqKGc/putra-15.jpg" class="w-full h-full object-cover member-img" alt="Member 4">
+                            <img src="https://res.cloudinary.com/ddc1rmczp/image/upload/f_auto,q_auto,w_800/v1769918759/putra_15_ogvtby.jpg" class="w-full h-full object-cover member-img" alt="Member 4">
                         </div>
                         <div class="p-6 text-center">
                             <h3 class="text-xl font-bold uppercase italic tracking-wider">FADHIL MUHAMMAD HARUN</h3>
@@ -156,7 +185,7 @@
                 <div class="swiper-slide">
                     <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
                         <div class="h-80 overflow-hidden bg-gray-900">
-                            <img src="https://i.ibb.co.com/3yqMgZ2N/putra-8.jpg" class="w-full h-full object-cover member-img" alt="Member 5">
+                            <img src="https://res.cloudinary.com/ddc1rmczp/image/upload/f_auto,q_auto,w_800/v1769918782/putra_8_ftklq2.jpg" class="w-full h-full object-cover member-img" alt="Member 5">
                         </div>
                         <div class="p-6 text-center">
                             <h3 class="text-xl font-bold uppercase italic tracking-wider">ADEL ALFA SAVERO</h3>
@@ -169,7 +198,7 @@
                 <div class="swiper-slide">
                     <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
                         <div class="h-80 overflow-hidden bg-gray-900">
-                            <img src="https://i.ibb.co.com/2YFhDX6k/putra-10.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
+                            <img src="https://res.cloudinary.com/ddc1rmczp/image/upload/f_auto,q_auto,w_800/v1769918733/putra_10_fhcgaj.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
                         </div>
                         <div class="p-6 text-center">
                             <h3 class="text-xl font-bold uppercase italic tracking-wider">AHMAD ABDUL KHODIR JAELANI</h3>
@@ -182,7 +211,7 @@
                 <div class="swiper-slide">
                     <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
                         <div class="h-80 overflow-hidden bg-gray-900">
-                            <img src="https://i.ibb.co.com/nsG2ZjSD/putra-7.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
+                            <img src="https://res.cloudinary.com/ddc1rmczp/image/upload/f_auto,q_auto,w_800/v1769918742/putra_7_gn1ajz.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
                         </div>
                         <div class="p-6 text-center">
                             <h3 class="text-xl font-bold uppercase italic tracking-wider">AHMAD ALFIANSYAH SUBASTIAN</h3>
@@ -208,7 +237,7 @@
                 <div class="swiper-slide">
                     <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
                         <div class="h-80 overflow-hidden bg-gray-900">
-                            <img src="https://i.ibb.co.com/DPbRrq06/putra-11.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
+                            <img src="https://res.cloudinary.com/ddc1rmczp/image/upload/f_auto,q_auto,w_800/v1769918718/putra_11_ke1ubi.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
                         </div>
                         <div class="p-6 text-center">
                             <h3 class="text-xl font-bold uppercase italic tracking-wider">DHIYAA EL HAQ</h3>
@@ -221,7 +250,7 @@
                 <div class="swiper-slide">
                     <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
                         <div class="h-80 overflow-hidden bg-gray-900">
-                            <img src="https://i.ibb.co.com/HLJwq1f9/putra-17.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
+                            <img src="https://res.cloudinary.com/ddc1rmczp/image/upload/f_auto,q_auto,w_800/v1769918786/putra_17_c7xy9a.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
                         </div>
                         <div class="p-6 text-center">
                             <h3 class="text-xl font-bold uppercase italic tracking-wider">FAIZAN FATAH FIRMANSYAH</h3>
@@ -234,7 +263,7 @@
                 <div class="swiper-slide">
                     <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
                         <div class="h-80 overflow-hidden bg-gray-900">
-                            <img src="https://i.ibb.co.com/VcDtNbYy/putra-34.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
+                            <img src="https://res.cloudinary.com/ddc1rmczp/image/upload/f_auto,q_auto,w_800/v1769918717/putra_34_o96nam.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
                         </div>
                         <div class="p-6 text-center">
                             <h3 class="text-xl font-bold uppercase italic tracking-wider">FARHAN RAMZY DANADYAKSA</h3>
@@ -247,7 +276,7 @@
                 <div class="swiper-slide">
                     <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
                         <div class="h-80 overflow-hidden bg-gray-900">
-                            <img src="https://i.ibb.co.com/q3BjHygc/putra-16-1.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
+                            <img src="https://res.cloudinary.com/ddc1rmczp/image/upload/f_auto,q_auto,w_800/v1769918695/putra_16_1_il3wdf.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
                         </div>
                         <div class="p-6 text-center">
                             <h3 class="text-xl font-bold uppercase italic tracking-wider">FIKRI TRI ARDIANSYAH</h3>
@@ -260,7 +289,7 @@
                 <div class="swiper-slide">
                     <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
                         <div class="h-80 overflow-hidden bg-gray-900">
-                            <img src="https://i.ibb.co.com/Kc3dDnQZ/putra-26.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
+                            <img src="https://res.cloudinary.com/ddc1rmczp/image/upload/f_auto,q_auto,w_800/v1769918731/putra_26_bq3ebc.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
                         </div>
                         <div class="p-6 text-center">
                             <h3 class="text-xl font-bold uppercase italic tracking-wider">HARUN YAHYA</h3>
@@ -273,7 +302,7 @@
                 <div class="swiper-slide">
                     <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
                         <div class="h-80 overflow-hidden bg-gray-900">
-                            <img src="https://i.ibb.co.com/JW4Z8sqR/putra-33.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
+                            <img src="https://res.cloudinary.com/ddc1rmczp/image/upload/f_auto,q_auto,w_800/v1769918742/putra_33_d9zh54.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
                         </div>
                         <div class="p-6 text-center">
                             <h3 class="text-xl font-bold uppercase italic tracking-wider">HARYA FARUQ ARRAIS</h3>
@@ -286,7 +315,7 @@
                 <div class="swiper-slide">
                     <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
                         <div class="h-80 overflow-hidden bg-gray-900">
-                            <img src="https://i.ibb.co.com/LLQJT7X/putra-19.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
+                            <img src="https://res.cloudinary.com/ddc1rmczp/image/upload/f_auto,q_auto,w_800/v1769918690/putra_19_az6f9k.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
                         </div>
                         <div class="p-6 text-center">
                             <h3 class="text-xl font-bold uppercase italic tracking-wider">HASYA FATHORONIY</h3>
@@ -299,7 +328,7 @@
                 <div class="swiper-slide">
                     <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
                         <div class="h-80 overflow-hidden bg-gray-900">
-                            <img src="https://i.ibb.co.com/tMs3GMFT/putra-18.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
+                            <img src="https://res.cloudinary.com/ddc1rmczp/image/upload/f_auto,q_auto,w_800/v1769918666/putra_18_zmxlcj.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
                         </div>
                         <div class="p-6 text-center">
                             <h3 class="text-xl font-bold uppercase italic tracking-wider">HILMI MUKHLAS SANDRIA</h3>
@@ -312,7 +341,7 @@
                 <div class="swiper-slide">
                     <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
                         <div class="h-80 overflow-hidden bg-gray-900">
-                            <img src="https://i.ibb.co.com/M5QXbnMK/putra-28.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
+                            <img src="https://res.cloudinary.com/ddc1rmczp/image/upload/f_auto,q_auto,w_800/v1769918663/putra_28_qck5op.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
                         </div>
                         <div class="p-6 text-center">
                             <h3 class="text-xl font-bold uppercase italic tracking-wider">MIKAIL JUNOV</h3>
@@ -325,7 +354,7 @@
                 <div class="swiper-slide">
                     <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
                         <div class="h-80 overflow-hidden bg-gray-900">
-                            <img src="https://i.ibb.co.com/tM1XZz84/putra-13.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
+                            <img src="https://res.cloudinary.com/ddc1rmczp/image/upload/f_auto,q_auto,w_800/v1769918641/putra_13_j0deu1.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
                         </div>
                         <div class="p-6 text-center">
                             <h3 class="text-xl font-bold uppercase italic tracking-wider">MOCH ALANDA FIKRI</h3>
@@ -338,7 +367,7 @@
                 <div class="swiper-slide">
                     <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
                         <div class="h-80 overflow-hidden bg-gray-900">
-                            <img src="https://i.ibb.co.com/MyF79BXX/putra-22.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
+                            <img src="https://res.cloudinary.com/ddc1rmczp/image/upload/f_auto,q_auto,w_800/v1769918651/putra_22_st3t0q.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
                         </div>
                         <div class="p-6 text-center">
                             <h3 class="text-xl font-bold uppercase italic tracking-wider">MUHAMMAD FAIZ</h3>
@@ -351,7 +380,7 @@
                 <div class="swiper-slide">
                     <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
                         <div class="h-80 overflow-hidden bg-gray-900">
-                            <img src="https://i.ibb.co.com/7NS2ckGd/putra-23.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
+                            <img src="https://res.cloudinary.com/ddc1rmczp/image/upload/f_auto,q_auto,w_800/v1769918627/putra_23_hcixgr.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
                         </div>
                         <div class="p-6 text-center">
                             <h3 class="text-xl font-bold uppercase italic tracking-wider">MUHAMMAD FARREL ARYA SANTOSA</h3>
@@ -364,7 +393,7 @@
                 <div class="swiper-slide">
                     <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
                         <div class="h-80 overflow-hidden bg-gray-900">
-                            <img src="https://i.ibb.co.com/RV9z2Ls/putra-21.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
+                            <img src="https://res.cloudinary.com/ddc1rmczp/image/upload/f_auto,q_auto,w_800/v1769918685/putra_21_csbbyt.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
                         </div>
                         <div class="p-6 text-center">
                             <h3 class="text-xl font-bold uppercase italic tracking-wider">RAYHAN SYAH PUTRA</h3>
@@ -377,7 +406,7 @@
                 <div class="swiper-slide">
                     <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
                         <div class="h-80 overflow-hidden bg-gray-900">
-                            <img src="https://i.ibb.co.com/LD7qghXQ/putra-27.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
+                            <img src="https://res.cloudinary.com/ddc1rmczp/image/upload/f_auto,q_auto,w_800/v1769918674/putra_27_gauwcp.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
                         </div>
                         <div class="p-6 text-center">
                             <h3 class="text-xl font-bold uppercase italic tracking-wider">RIFQY VIRDAN AL MUZAKKI</h3>
@@ -390,7 +419,7 @@
                 <div class="swiper-slide">
                     <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
                         <div class="h-80 overflow-hidden bg-gray-900">
-                            <img src="https://i.ibb.co.com/mrdyfXCx/putra-29.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
+                            <img src="https://res.cloudinary.com/ddc1rmczp/image/upload/f_auto,q_auto,w_800/v1769918679/putra_29_sfcwbo.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
                         </div>
                         <div class="p-6 text-center">
                             <h3 class="text-xl font-bold uppercase italic tracking-wider">RIZKY MUHAMMAD</h3>
@@ -403,7 +432,7 @@
                 <div class="swiper-slide">
                     <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
                         <div class="h-80 overflow-hidden bg-gray-900">
-                            <img src="https://i.ibb.co.com/gbTGhtV3/putra-24.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
+                            <img src="https://res.cloudinary.com/ddc1rmczp/image/upload/f_auto,q_auto,w_800/v1769918726/putra_24_iyur52.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
                         </div>
                         <div class="p-6 text-center">
                             <h3 class="text-xl font-bold uppercase italic tracking-wider">SULTHAN RAUF AL RASYID</h3>
@@ -416,7 +445,7 @@
                 <div class="swiper-slide">
                     <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
                         <div class="h-80 overflow-hidden bg-gray-900">
-                            <img src="https://i.ibb.co.com/217VtSHZ/putra-25.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
+                            <img src="https://res.cloudinary.com/ddc1rmczp/image/upload/f_auto,q_auto,w_800/v1769918649/putra_25_ypnhfl.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
                         </div>
                         <div class="p-6 text-center">
                             <h3 class="text-xl font-bold uppercase italic tracking-wider">VIGO LABIB RAMADAN</h3>
@@ -429,7 +458,7 @@
                 <div class="swiper-slide">
                     <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
                         <div class="h-80 overflow-hidden bg-gray-900">
-                            <img src="https://i.ibb.co.com/k63wr9Sv/putra-31.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
+                            <img src="https://res.cloudinary.com/ddc1rmczp/image/upload/f_auto,q_auto,w_800/v1769918647/putra_31_cxm8y4.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
                         </div>
                         <div class="p-6 text-center">
                             <h3 class="text-xl font-bold uppercase italic tracking-wider">ZHILLAN AKHDAN AL KHAIR</h3>
@@ -442,7 +471,7 @@
                 <div class="swiper-slide">
                     <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
                         <div class="h-80 overflow-hidden bg-gray-900">
-                            <img src="https://i.ibb.co.com/0V85fqjH/putra-9.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
+                            <img src="https://res.cloudinary.com/ddc1rmczp/image/upload/f_auto,q_auto,w_800/v1769918625/putra_9_ckpxsh.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
                         </div>
                         <div class="p-6 text-center">
                             <h3 class="text-xl font-bold uppercase italic tracking-wider">DAFFA NURRAFI RAMADHAN</h3>
@@ -455,7 +484,7 @@
                 <div class="swiper-slide">
                     <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
                         <div class="h-80 overflow-hidden bg-gray-900">
-                            <img src="https://i.ibb.co.com/CK4XyYt0/putra-5.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
+                            <img src="https://res.cloudinary.com/ddc1rmczp/image/upload/f_auto,q_auto,w_800/v1769918615/putra_5_fnhfju.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
                         </div>
                         <div class="p-6 text-center">
                             <h3 class="text-xl font-bold uppercase italic tracking-wider">FAREVO AHMADDINEJAD</h3>
@@ -468,7 +497,7 @@
                 <div class="swiper-slide">
                     <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
                         <div class="h-80 overflow-hidden bg-gray-900">
-                            <img src="https://i.ibb.co.com/5xfgntk2/putra-4.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
+                            <img src="https://res.cloudinary.com/ddc1rmczp/image/upload/f_auto,q_auto,w_800/v1769918616/putra_4_coigs6.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
                         </div>
                         <div class="p-6 text-center">
                             <h3 class="text-xl font-bold uppercase italic tracking-wider">FIRJATULLAH MUHAMMAD FIKRUL JADID</h3>
@@ -481,7 +510,7 @@
                 <div class="swiper-slide">
                     <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
                         <div class="h-80 overflow-hidden bg-gray-900">
-                            <img src="https://i.ibb.co.com/7d1vBSBN/putra-6.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
+                            <img src="https://res.cloudinary.com/ddc1rmczp/image/upload/f_auto,q_auto,w_800/v1769918690/putra_6_z3vgre.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
                         </div>
                         <div class="p-6 text-center">
                             <h3 class="text-xl font-bold uppercase italic tracking-wider">MUHAMMAD ARDIANSYAH</h3>
@@ -494,7 +523,7 @@
                 <div class="swiper-slide">
                     <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
                         <div class="h-80 overflow-hidden bg-gray-900">
-                            <img src="https://i.ibb.co.com/359KNPHs/putra-3.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
+                            <img src="https://res.cloudinary.com/ddc1rmczp/image/upload/f_auto,q_auto,w_800/v1769918608/putra_3_ykul44.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
                         </div>
                         <div class="p-6 text-center">
                             <h3 class="text-xl font-bold uppercase italic tracking-wider">MUHAMMAD ARIQ MUBARAK</h3>
@@ -507,7 +536,7 @@
                 <div class="swiper-slide">
                     <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
                         <div class="h-80 overflow-hidden bg-gray-900">
-                            <img src="https://i.ibb.co.com/TDH5y5LZ/putra-1.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
+                            <img src="https://res.cloudinary.com/ddc1rmczp/image/upload/f_auto,q_auto,w_800/v1769918608/putra_1_tjaife.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
                         </div>
                         <div class="p-6 text-center">
                             <h3 class="text-xl font-bold uppercase italic tracking-wider">MUHAMMAD HAFIZH AL AYYASY</h3>
@@ -520,7 +549,7 @@
                 <div class="swiper-slide">
                     <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
                         <div class="h-80 overflow-hidden bg-gray-900">
-                            <img src="https://i.ibb.co.com/dnRvj1C/putra-12.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
+                            <img src="https://res.cloudinary.com/ddc1rmczp/image/upload/f_auto,q_auto,w_800/v1769918679/putra_12_pxai5k.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
                         </div>
                         <div class="p-6 text-center">
                             <h3 class="text-xl font-bold uppercase italic tracking-wider">RAFIF RAGHID RABBANI</h3>
@@ -533,7 +562,7 @@
                 <div class="swiper-slide">
                     <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
                         <div class="h-80 overflow-hidden bg-gray-900">
-                            <img src="https://i.ibb.co.com/27C6TzFx/putra-2.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
+                            <img src="https://res.cloudinary.com/ddc1rmczp/image/upload/f_auto,q_auto,w_800/v1769918608/putra_2_co4utc.jpg" class="w-full h-full object-cover member-img" alt="Member 2">
                         </div>
                         <div class="p-6 text-center">
                             <h3 class="text-xl font-bold uppercase italic tracking-wider">WAHYU RIZQI HABIBULLAH</h3>
@@ -695,8 +724,8 @@
             mousewheel: { forceToAxis: true },
             scrollbar: { el: '.swiper-scrollbar', draggable: true },
             breakpoints: {
-                640: { slidesPerView: 2.2 },
-                1024: { slidesPerView: 4.2 }
+                640: { slidesPerView: 2 },
+                1024: { slidesPerView: 4 }
             }
         });
 
