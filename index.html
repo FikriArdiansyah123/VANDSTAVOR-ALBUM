@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VANDSTAVOR | GEN 7</title>
     
-    <link rel="icon" type="image/png" href="https://i.ibb.co.com/k2XpVX94/Untitled-design-8.png">
+    <link rel="icon" type="image/png" href="https://i.ibb.co.com/4nMWCS66/Untitled-design-10.png">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
@@ -15,10 +15,8 @@
 
     <style>
         body { font-family: 'Inter', sans-serif; background-color: black; color: white; }
-        /* Latar belakang navbar transparan di awal */
-        .glass-nav { background: transparent; backdrop-filter: none; transition: all 0.4s ease; }
-        /* Saat di-scroll akan berubah menjadi gelap transparan */
-        .glass-nav.scrolled { background: transparent; backdrop-filter: none; border-bottom: none; }
+        .glass-nav { background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(10px); transition: all 0.4s ease; }
+        .glass-nav.scrolled { background: transparent; backdrop-filter: blur(10px); border-bottom: none; }
         
         .text-gradient { background: linear-gradient(to right, #ff0000, #ffffff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .swiper-pagination-bullet { background: #ff0000; }
@@ -28,13 +26,22 @@
         
         .swiper-scrollbar { background: rgba(255,255,255,0.1); }
         .swiper-scrollbar-drag { background: #ff0000; }
+
+        .subscribe-card { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.12); }
+        .subscribe-input { background: rgba(255, 255, 255, 0.2); color: #111827; }
+        .subscribe-input::placeholder { color: rgba(17, 24, 39, 0.7); }
+        .subscribe-btn { background: #cfcfcf; color: #7a0f0f; }
+        .subscribe-btn:hover { background: #bdbdbd; }
+
+        .subscribe-modal { background: rgba(0, 0, 0, 0.55); }
+        .subscribe-modal-card { background: #ffffff; color: #111; }
     </style>
 </head>
 <body class="overflow-x-hidden">
 
     <nav class="sticky top-0 w-full max-w-full z-[100] py-4 px-4 md:px-12 flex justify-between items-center glass-nav">
         <div class="flex items-center gap-2">
-            <div class="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center font-bold text-white">V</div>
+            <img src="https://i.ibb.co.com/4nMWCS66/Untitled-design-10.png" alt="Vandstavor Gen7 Logo" class="w-10 h-10 rounded-full object-cover">
             <span class="text-xl font-extrabold tracking-tighter italic">VANDSTAVOR <span class="text-red-600">GEN7</span></span>
         </div>
         <div class="hidden md:flex space-x-8 font-medium text-sm uppercase tracking-widest">
@@ -113,7 +120,7 @@
                 </div>
             </div>
             <div class="relative" data-aos="fade-left">
-                <img src="https://images.unsplash.com/photo-1769739496825-139ba80b40ce?q=80&w=774&auto=format&fit=crop" class="rounded-2xl shadow-2xl" alt="Team Work">
+                <img src="https://i.ibb.co.com/HDDXpXf1/Whats-App-Image-2026-01-30-at-12-53-12-1.jpg" class="rounded-2xl shadow-2xl" alt="Team Work">
                 <div class="absolute -bottom-6 -left-6 bg-red-600 p-8 rounded-2xl hidden md:block">
                     <p class="font-bold text-2xl text-white italic">"Excellence in every <br> joule of energy."</p>
                 </div>
@@ -224,7 +231,7 @@
                 <div class="swiper-slide">
                     <div class="bg-[#111] rounded-3xl overflow-hidden border border-white/5 card-hover">
                         <div class="h-80 overflow-hidden bg-gray-900">
-                            <img src="LINK_GAMBAR_2" class="w-full h-full object-cover member-img" alt="Member 2">
+                            <img src="https://res.cloudinary.com/duk56cgw5/image/upload/f_auto,q_auto,w_800/v1770101792/Untitled_design_12_bvpnxv.png" class="w-full h-full object-cover member-img" alt="Member 2">
                         </div>
                         <div class="p-6 text-center">
                             <h3 class="text-xl font-bold uppercase italic tracking-wider">AHMAD NIZZAR FAIZ</h3>
@@ -333,7 +340,7 @@
                         <div class="p-6 text-center">
                             <h3 class="text-xl font-bold uppercase italic tracking-wider">HILMI MUKHLAS SANDRIA</h3>
                             <p class="text-red-600 text-[10px] font-black tracking-[0.2em] mb-3 uppercase">Vandstavor Member</p>
-                            <p class="text-gray-400 text-sm italic">"Quote pribadi di sini."</p>
+                            <p class="text-gray-400 text-sm italic">"There is no shame in failure. At least you had the chance to learn from it."</p>
                         </div>
                     </div>
                 </div>
@@ -450,7 +457,7 @@
                         <div class="p-6 text-center">
                             <h3 class="text-xl font-bold uppercase italic tracking-wider">VIGO LABIB RAMADAN</h3>
                             <p class="text-red-600 text-[10px] font-black tracking-[0.2em] mb-3 uppercase">Vandstavor Member</p>
-                            <p class="text-gray-400 text-sm italic">"Quote pribadi di sini."</p>
+                            <p class="text-gray-400 text-sm italic">"ggg."</p>
                         </div>
                     </div>
                 </div>
@@ -541,7 +548,7 @@
                         <div class="p-6 text-center">
                             <h3 class="text-xl font-bold uppercase italic tracking-wider">MUHAMMAD HAFIZH AL AYYASY</h3>
                             <p class="text-red-600 text-[10px] font-black tracking-[0.2em] mb-3 uppercase">Vandstavor Member</p>
-                            <p class="text-gray-400 text-sm italic">"Quote pribadi di sini."</p>
+                            <p class="text-gray-400 text-sm italic">"ggg."</p>
                         </div>
                     </div>
                 </div>
@@ -675,6 +682,11 @@
                 <h3 class="text-xl font-bold mb-2">2nd MFQ 2024</h3>
                 <p class="text-gray-400 text-sm">Memahami dan menjelaskan isi Al-Qur'an dengan sangat baik.</p>
             </div>
+            <div class="bg-white/5 p-8 rounded-2xl card-hover border border-white/10" data-aos="zoom-in" data-aos-delay="300">
+                <div class="text-red-600 text-4xl mb-4"><i class="fa-solid fa-trophy"></i></div>
+                <h3 class="text-xl font-bold mb-2">1st Mathematics HIFEST 2026</h3>
+                <p class="text-gray-400 text-sm">Mengerjakan dan menjelaskan beberapa soal sulit matematika.</p>
+            </div>
         </div>
     </section>
 
@@ -686,70 +698,178 @@
                 <div class="flex space-x-4 text-2xl">
                     <a href="https://www.instagram.com/vandstavor/" target="_blank" class="text-white hover:text-red-600 transition"><i class="fa-brands fa-instagram"></i></a>
                     <a href="#" class="text-white hover:text-red-600 transition"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="#" class="text-white hover:text-red-600 transition"><i class="fa-brands fa-facebook"></i></a>
                     <a href="#" class="text-white hover:text-red-600 transition"><i class="fa-brands fa-youtube"></i></a>
-                    <a href="#" class="text-white hover:text-red-600 transition"><i class="fa-brands fa-linkedin-in"></i></a>
                 </div>
             </div>
             <div>
                 <h4 class="font-bold mb-6 text-red-600 italic uppercase">Quick Links</h4>
                 <ul class="space-y-4 text-gray-400 text-sm">
-                    <li><a href="#" class="hover:text-white transition">Vandstavor Info</a></li>
+                    <li><a href="#about" class="hover:text-white transition">Vandstavor Info</a></li>
                     <li><a href="#members" class="hover:text-white transition">Our Team</a></li>
-                    <li><a href="#" class="hover:text-white transition font-semibold">Sponsorship</a></li>
-                    <li><a href="#" class="hover:text-white transition font-semibold">Privacy Policy</a></li>
+                    <li><a href="https://share.google/2tRePTXh1X4VbWzGz" target="_blank" class="hover:text-white transition font-semibold">Address</a></li>
                 </ul>
             </div>
             <div>
                 <h4 class="font-bold mb-6 text-red-600 italic uppercase">Contact Us</h4>
                 <p class="text-gray-400 text-sm mb-2">vandstavor.partnership@gmail.com</p>
                 <p class="text-gray-400 text-sm mb-6">+62 815-5401-6204</p>
-                <button class="bg-[#e32d2d] hover:bg-red-700 text-white px-8 py-3 rounded-lg font-black tracking-widest text-sm transition-transform active:scale-95">
-                    SUBSCRIBE
-                </button>
+                <div class="mt-6">
+                    <h5 class="text-lg font-black mb-2">Stay Up to Date</h5>
+                    <form id="subscribe-form" class="flex flex-col sm:flex-row gap-3">
+                        <input
+                            id="subscribe-email"
+                            type="email"
+                            placeholder="Masukkan email kamu"
+                            class="flex-1 rounded-lg bg-white/10 border border-white/10 px-3 py-1.5 text-xs text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-red-600"
+                            required
+                        >
+                        <button
+                            type="submit"
+                            class="bg-[#e32d2d] hover:bg-red-700 text-white px-4 py-1.5 rounded-lg font-bold text-xs transition-transform active:scale-95"
+                        >
+                            Subscribe
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
         <div class="text-center text-gray-600 text-xs border-t border-white/5 pt-10">
-            &copy; 2026 Vandstavor Team. Developed with Passion.
+            &copy; 2026 فكري تري ارديانشاه and Vandstavor Team. Developed with Passion.
         </div>
     </footer>
 
+    <div id="subscribe-modal" class="fixed inset-0 hidden items-center justify-center z-[120]">
+        <div class="absolute inset-0 subscribe-modal-backdrop"></div>
+        <div class="relative bg-white text-black rounded-3xl shadow-2xl max-w-md w-[90%] px-7 py-8">
+            <h3 class="text-xl font-black mb-5">Check your email again</h3>
+            <div class="flex flex-col sm:flex-row gap-3 mb-8">
+                <input
+                    id="subscribe-confirmation"
+                    type="email"
+                    class="flex-1 rounded-full bg-gray-200 px-4 py-2 text-sm text-gray-900 focus:outline-none"
+                    readonly
+                >
+            </div>
+            <div class="flex flex-col sm:flex-row gap-4">
+                <button
+                    type="button"
+                    id="subscribe-cancel"
+                    class="flex-1 rounded-full bg-gray-100 text-red-600 font-semibold py-2 transition hover:bg-gray-200"
+                >
+                    Cancel
+                </button>
+                <button
+                    type="button"
+                    id="subscribe-confirm"
+                    class="flex-1 rounded-full bg-[#e32d2d] text-white font-semibold py-2 transition hover:bg-red-700"
+                >
+                    Subscribe
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script>
-        AOS.init({ once: true });
+        window.addEventListener('DOMContentLoaded', () => {
+            AOS.init({ once: true });
 
-        const memberSwiper = new Swiper('.memberSwiper', {
-            slidesPerView: 1,
-            spaceBetween: 12,
-            mousewheel: { forceToAxis: true },
-            scrollbar: { el: '.swiper-scrollbar', draggable: true },
-            breakpoints: {
-                640: { slidesPerView: 2 },
-                1024: { slidesPerView: 4 }
-            }
-        });
+            const memberSwiper = new Swiper('.memberSwiper', {
+                slidesPerView: 1,
+                spaceBetween: 12,
+                mousewheel: { forceToAxis: true },
+                scrollbar: { el: '.swiper-scrollbar', draggable: true },
+                breakpoints: {
+                    640: { slidesPerView: 2 },
+                    1024: { slidesPerView: 4 }
+                }
+            });
 
-        const vehicleSwiper = new Swiper('.vehicleSwiper', {
-            slidesPerView: 1,
-            spaceBetween: 30,
-            centeredSlides: false,
-            pagination: { el: '.swiper-pagination', clickable: true },
-            breakpoints: {
-                768: { slidesPerView: 2 },
-                1024: { slidesPerView: 2.5 }
-            }
-        });
+            const vehicleSwiper = new Swiper('.vehicleSwiper', {
+                slidesPerView: 1,
+                spaceBetween: 30,
+                centeredSlides: false,
+                pagination: { el: '.swiper-pagination', clickable: true },
+                breakpoints: {
+                    768: { slidesPerView: 2 },
+                    1024: { slidesPerView: 2.5 }
+                }
+            });
 
-        // Script untuk mengatur transparansi navbar saat scroll
-        window.addEventListener('scroll', function() {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 50) {
-                nav.classList.add('scrolled', 'py-4');
-                nav.classList.remove('py-6');
+            // Script untuk mengatur transparansi navbar saat scroll
+            window.addEventListener('scroll', function() {
+                const nav = document.querySelector('nav');
+                if (window.scrollY > 50) {
+                    nav.classList.add('scrolled', 'py-4');
+                    nav.classList.remove('py-6');
+                } else {
+                    nav.classList.remove('scrolled', 'py-4');
+                    nav.classList.add('py-6');
+                }
+            });
+
+            const EMAILJS_PUBLIC_KEY = "6NnCFPsUSba3jr4BC";
+            const EMAILJS_SERVICE_ID = "service_ihqpsxt";
+            const EMAILJS_TEMPLATE_ID = "template_ayshbce";
+
+            if (window.emailjs) {
+                emailjs.init(EMAILJS_PUBLIC_KEY);
             } else {
-                nav.classList.remove('scrolled', 'py-4');
-                nav.classList.add('py-6');
+                console.warn('EmailJS belum termuat. Pastikan script EmailJS bisa diakses.');
             }
+
+            const subscribeForm = document.getElementById('subscribe-form');
+            const subscribeEmail = document.getElementById('subscribe-email');
+            const subscribeModal = document.getElementById('subscribe-modal');
+            const subscribeConfirmation = document.getElementById('subscribe-confirmation');
+            const subscribeCancel = document.getElementById('subscribe-cancel');
+            const subscribeConfirm = document.getElementById('subscribe-confirm');
+
+            const closeSubscribeModal = () => {
+                subscribeModal.classList.add('hidden');
+                subscribeModal.classList.remove('flex');
+            };
+
+            subscribeForm.addEventListener('submit', (event) => {
+                event.preventDefault();
+                if (!subscribeEmail.value) {
+                    subscribeEmail.focus();
+                    return;
+                }
+                subscribeConfirmation.value = subscribeEmail.value;
+                subscribeModal.classList.remove('hidden');
+                subscribeModal.classList.add('flex');
+            });
+
+            subscribeCancel.addEventListener('click', closeSubscribeModal);
+            subscribeConfirm.addEventListener('click', () => {
+                if (!subscribeEmail.value) {
+                    closeSubscribeModal();
+                    return;
+                }
+
+                if (!window.emailjs) {
+                    alert("EmailJS belum termuat. Pastikan script EmailJS bisa diakses.");
+                    return;
+                }
+
+                emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+                    to_email: subscribeEmail.value,
+                    subject: "Terima kasih sudah subscribe!",
+                    message: "Terima kasih sudah bergabung. Kami akan kirim info terbaru ke email ini."
+                })
+                .then(() => {
+                    closeSubscribeModal();
+                    subscribeForm.reset();
+                    alert("Email berhasil dikirim!");
+                })
+                .catch(() => {
+                    alert("Gagal mengirim email. Pastikan konfigurasi EmailJS sudah benar.");
+                });
+            });
         });
     </script>
 </body>
