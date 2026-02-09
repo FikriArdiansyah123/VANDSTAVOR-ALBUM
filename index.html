@@ -14,7 +14,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 
     <style>
+        * , *::before, *::after { box-sizing: border-box; }
         body { font-family: 'Inter', sans-serif; background-color: black; color: white; }
+        img, video { max-width: 100%; height: auto; }
+        .safe-padding { padding-left: max(1.25rem, env(safe-area-inset-left)); padding-right: max(1.25rem, env(safe-area-inset-right)); }
         .glass-nav { background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(10px); transition: all 0.4s ease; }
         .glass-nav.scrolled { background: transparent; backdrop-filter: blur(10px); border-bottom: none; }
         
@@ -39,7 +42,7 @@
 </head>
 <body class="overflow-x-hidden">
 
-    <nav class="sticky top-0 w-full max-w-full z-[100] py-4 px-4 md:px-12 flex justify-between items-center glass-nav">
+    <nav class="sticky top-0 w-full max-w-full z-[100] py-4 px-6 md:px-12 flex justify-between items-center glass-nav safe-padding">
         <div class="flex items-center gap-2">
             <img src="https://i.ibb.co.com/4nMWCS66/Untitled-design-10.png" alt="Vandstavor Gen7 Logo" class="w-10 h-10 rounded-full object-cover">
             <span class="text-xl font-extrabold tracking-tighter italic">VANDSTAVOR <span class="text-red-600">GEN7</span></span>
@@ -52,8 +55,20 @@
             <a href="#achievements" class="hover:text-red-500 transition">Achievements</a>
             <a href="#contact" class="hover:text-red-500 transition">Contact</a>
         </div>
-        <button class="md:hidden text-2xl"><i class="fa-solid fa-bars"></i></button>
+        <button id="mobile-menu-button" class="md:hidden text-2xl" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle navigation">
+            <i class="fa-solid fa-bars"></i>
+        </button>
     </nav>
+    <div id="mobile-menu" class="md:hidden hidden bg-black/90 backdrop-blur-lg border-b border-white/10 px-6 py-6 safe-padding">
+        <div class="flex flex-col gap-4 font-semibold text-sm uppercase tracking-widest">
+            <a href="#home" class="hover:text-red-500 transition">Home</a>
+            <a href="#about" class="hover:text-red-500 transition">About</a>
+            <a href="#members" class="hover:text-red-500 transition">Members</a>
+            <a href="#garage" class="hover:text-red-500 transition">Album</a>
+            <a href="#achievements" class="hover:text-red-500 transition">Achievements</a>
+            <a href="#contact" class="hover:text-red-500 transition">Contact</a>
+        </div>
+    </div>
 
     <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
 
