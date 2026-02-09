@@ -842,6 +842,19 @@
             const subscribeConfirmation = document.getElementById('subscribe-confirmation');
             const subscribeCancel = document.getElementById('subscribe-cancel');
             const subscribeConfirm = document.getElementById('subscribe-confirm');
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            const setMobileMenuState = (isOpen) => {
+                if (!mobileMenuButton || !mobileMenu) {
+                    return;
+                }
+                mobileMenu.classList.toggle('hidden', !isOpen);
+                mobileMenuButton.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+                mobileMenuButton.innerHTML = isOpen
+                    ? '<i class="fa-solid fa-xmark"></i>'
+                    : '<i class="fa-solid fa-bars"></i>';
+            };
 
             const closeSubscribeModal = () => {
                 subscribeModal.classList.add('hidden');
@@ -885,6 +898,23 @@
                     alert("Gagal mengirim email. Pastikan konfigurasi EmailJS sudah benar.");
                 });
             });
+
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => {
+                    const isOpen = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+                    setMobileMenuState(!isOpen);
+                });
+
+                mobileMenu.querySelectorAll('a').forEach((link) => {
+                    link.addEventListener('click', () => setMobileMenuState(false));
+                });
+
+                window.addEventListener('resize', () => {
+                    if (window.innerWidth >= 768) {
+                        setMobileMenuState(false);
+                    }
+                });
+            }
         });
     </script>
 </body>
