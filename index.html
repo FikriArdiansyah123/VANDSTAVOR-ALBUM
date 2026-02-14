@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no,email=no,address=no">
     <title>VANDSTAVOR | GEN 7</title>
     
     <link rel="icon" type="image/png" href="https://i.ibb.co.com/4nMWCS66/Untitled-design-10.png">
@@ -18,8 +19,89 @@
         body { font-family: 'Inter', sans-serif; background-color: black; color: white; }
         img, video { max-width: 100%; height: auto; }
         .safe-padding { padding-left: max(1.25rem, env(safe-area-inset-left)); padding-right: max(1.25rem, env(safe-area-inset-right)); }
-        .glass-nav { background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(10px); transition: all 0.4s ease; }
-        .glass-nav.scrolled { background: transparent; backdrop-filter: blur(10px); border-bottom: none; }
+        a[x-apple-data-detectors],
+        .no-auto-link a[x-apple-data-detectors] {
+            color: inherit !important;
+            text-decoration: none !important;
+            pointer-events: none !important;
+        }
+        .glass-nav {
+            background: transparent;
+            backdrop-filter: blur(10px);
+            border-bottom: transparent;
+            box-shadow: none;
+            transition: all 0.35s ease;
+        }
+        .glass-nav.scrolled {
+            background: linear-gradient(110deg, rgba(10, 10, 10, 0.8), rgba(10, 10, 10, 0.55));
+            border-bottom: transparent;
+            box-shadow: 0 14px 38px rgba(0, 0, 0, 0.42);
+        }
+        .nav-link {
+            position: relative;
+            color: rgba(255, 255, 255, 0.9);
+            padding: 0.45rem 0.75rem;
+            border-radius: 9999px;
+            transition: all 0.25s ease;
+        }
+        .nav-link:hover {
+            color: #ffffff;
+            background: rgba(239, 68, 68, 0.16);
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            left: 18%;
+            right: 18%;
+            bottom: 0.18rem;
+            height: 2px;
+            border-radius: 9999px;
+            background: linear-gradient(90deg, rgba(239, 68, 68, 0), rgba(239, 68, 68, 1), rgba(239, 68, 68, 0));
+            opacity: 0;
+            transform: scaleX(0.4);
+            transition: all 0.25s ease;
+        }
+        .nav-link:hover::after {
+            opacity: 1;
+            transform: scaleX(1);
+        }
+
+        .mobile-panel {
+            position: fixed;
+            top: 4.9rem;
+            left: 1rem;
+            right: 1rem;
+            z-index: 95;
+            background: linear-gradient(145deg, rgba(17, 17, 17, 0.88), rgba(17, 17, 17, 0.58));
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+            border-radius: 1rem;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(-8px);
+            pointer-events: none;
+            transition: max-height 0.35s ease, opacity 0.3s ease, transform 0.3s ease;
+        }
+        .mobile-panel.open {
+            max-height: 420px;
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+        .mobile-link {
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 0.75rem;
+            padding: 0.55rem 0.8rem;
+            transition: all 0.2s ease;
+        }
+        .mobile-link:hover {
+            border-color: rgba(239, 68, 68, 0.5);
+            background: rgba(239, 68, 68, 0.14);
+            color: #fff;
+        }
         
         .text-gradient { background: linear-gradient(to right, #ff0000, #ffffff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .swiper-pagination-bullet { background: #ff0000; }
@@ -213,26 +295,26 @@
             <img src="https://i.ibb.co.com/4nMWCS66/Untitled-design-10.png" alt="Vandstavor Gen7 Logo" class="w-10 h-10 rounded-full object-cover">
             <span class="text-xl font-extrabold tracking-tighter italic">VANDSTAVOR <span class="text-red-600">GEN7</span></span>
         </div>
-        <div class="hidden md:flex space-x-8 font-medium text-sm uppercase tracking-widest">
-            <a href="#home" class="hover:text-red-500 transition">Home</a>
-            <a href="#about" class="hover:text-red-500 transition">About</a>
-            <a href="#members" class="hover:text-red-500 transition">Members</a>
-            <a href="#garage" class="hover:text-red-500 transition">Album</a>
-            <a href="#achievements" class="hover:text-red-500 transition">Achievements</a>
-            <a href="#contact" class="hover:text-red-500 transition">Contact</a>
+        <div class="hidden md:flex space-x-3 font-medium text-sm uppercase tracking-widest">
+            <a href="#home" class="nav-link">Home</a>
+            <a href="#about" class="nav-link">About</a>
+            <a href="#members" class="nav-link">Members</a>
+            <a href="#garage" class="nav-link">Album</a>
+            <a href="#achievements" class="nav-link">Achievements</a>
+            <a href="#contact" class="nav-link">Contact</a>
         </div>
-        <button id="mobile-menu-button" class="md:hidden text-2xl" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle navigation">
+        <button id="mobile-menu-button" class="md:hidden text-lg w-11 h-11 rounded-xl border border-white/20 bg-white/5 backdrop-blur-md hover:bg-white/10 transition" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle navigation">
             <i class="fa-solid fa-bars"></i>
         </button>
     </nav>
-    <div id="mobile-menu" class="md:hidden hidden bg-black/90 backdrop-blur-lg border-b border-white/10 px-6 py-6 safe-padding">
-        <div class="flex flex-col gap-4 font-semibold text-sm uppercase tracking-widest">
-            <a href="#home" class="hover:text-red-500 transition">Home</a>
-            <a href="#about" class="hover:text-red-500 transition">About</a>
-            <a href="#members" class="hover:text-red-500 transition">Members</a>
-            <a href="#garage" class="hover:text-red-500 transition">Album</a>
-            <a href="#achievements" class="hover:text-red-500 transition">Achievements</a>
-            <a href="#contact" class="hover:text-red-500 transition">Contact</a>
+    <div id="mobile-menu" class="mobile-panel md:hidden px-4 py-4 safe-padding">
+        <div class="grid grid-cols-2 gap-3 font-semibold text-xs uppercase tracking-[0.18em]">
+            <a href="#home" class="mobile-link">Home</a>
+            <a href="#about" class="mobile-link">About</a>
+            <a href="#members" class="mobile-link">Members</a>
+            <a href="#garage" class="mobile-link">Album</a>
+            <a href="#achievements" class="mobile-link">Achievements</a>
+            <a href="#contact" class="mobile-link">Contact</a>
         </div>
     </div>
 
@@ -917,7 +999,7 @@
                 </div>
             </div>
         </div>
-        <div class="text-center text-gray-600 text-xs border-t border-white/5 pt-10">
+        <div class="text-center text-gray-600 text-xs border-t border-white/5 pt-10 no-auto-link select-none pointer-events-none">
             &copy; 2026 فكري تري ارديانشاه and Vandstavor Team. Developed with Passion.
         </div>
     </footer>
@@ -982,9 +1064,13 @@
                 }
             });
 
-            // Script untuk mengatur transparansi navbar saat scroll
-            window.addEventListener('scroll', function() {
-                const nav = document.querySelector('nav');
+            const nav = document.querySelector('nav');
+            const scrollProgress = document.getElementById('scroll-progress');
+
+            const updateNavState = () => {
+                if (!nav) {
+                    return;
+                }
                 if (window.scrollY > 50) {
                     nav.classList.add('scrolled', 'py-4');
                     nav.classList.remove('py-6');
@@ -998,7 +1084,11 @@
                     const progress = documentHeight > 0 ? (window.scrollY / documentHeight) * 100 : 0;
                     scrollProgress.style.width = `${Math.min(progress, 100)}%`;
                 }
-            });
+            };
+
+            window.addEventListener('scroll', updateNavState);
+            window.addEventListener('hashchange', updateNavState);
+            updateNavState();
 
             const EMAILJS_PUBLIC_KEY = "6NnCFPsUSba3jr4BC";
             const EMAILJS_SERVICE_ID = "service_ihqpsxt";
@@ -1019,7 +1109,6 @@
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
             const pageLoader = document.getElementById('page-loader');
-            const scrollProgress = document.getElementById('scroll-progress');
             const cursorGlow = document.getElementById('cursor-glow');
             const backgroundParticles = document.getElementById('background-particles');
 
@@ -1075,7 +1164,7 @@
                 if (!mobileMenuButton || !mobileMenu) {
                     return;
                 }
-                mobileMenu.classList.toggle('hidden', !isOpen);
+                mobileMenu.classList.toggle('open', isOpen);
                 mobileMenuButton.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
                 mobileMenuButton.innerHTML = isOpen
                     ? '<i class="fa-solid fa-xmark"></i>'
@@ -1122,6 +1211,13 @@
                 })
                 .catch(() => {
                     alert("Gagal mengirim email. Pastikan konfigurasi EmailJS sudah benar.");
+                });
+            });
+
+
+            document.querySelectorAll('a[href="#home"]').forEach((homeLink) => {
+                homeLink.addEventListener('click', () => {
+                    setTimeout(updateNavState, 120);
                 });
             });
 
