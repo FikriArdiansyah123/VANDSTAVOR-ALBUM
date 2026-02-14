@@ -38,9 +38,175 @@
 
         .subscribe-modal { background: rgba(0, 0, 0, 0.55); }
         .subscribe-modal-card { background: #ffffff; color: #111; }
+
+        .page-loader {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at center, #2a0000, #000 60%);
+            z-index: 200;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+        .page-loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        .loader-ring {
+            width: 90px;
+            height: 90px;
+            border-radius: 9999px;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            border-top-color: #ef4444;
+            animation: loaderSpin 1s linear infinite;
+            box-shadow: 0 0 30px rgba(239, 68, 68, 0.55);
+        }
+        .loader-text {
+            position: absolute;
+            margin-top: 150px;
+            letter-spacing: 0.4em;
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.7);
+            animation: pulseText 2.6s ease-in-out infinite;
+        }
+        .scroll-progress {
+            position: fixed;
+            inset: 0 auto auto 0;
+            height: 3px;
+            width: 0%;
+            z-index: 160;
+            background: linear-gradient(90deg, #ef4444, #ffffff);
+            box-shadow: 0 0 20px rgba(239, 68, 68, 0.7);
+            transition: width 0.15s linear;
+        }
+        .cursor-glow {
+            position: fixed;
+            width: 50px;
+            height: 50px;
+            border-radius: 9999px;
+            background: radial-gradient(circle, rgba(239, 68, 68, 0.22), rgba(239, 68, 68, 0));
+            pointer-events: none;
+            z-index: 20;
+            transform: translate(-50%, -50%);
+            mix-blend-mode: screen;
+            transition: opacity 0.25s ease;
+        }
+        .hero-cinematic {
+            animation: heroEntrance 1.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+        .float-orb {
+            position: absolute;
+            border-radius: 9999px;
+            filter: blur(0px);
+            pointer-events: none;
+            animation: floatOrb 9s ease-in-out infinite;
+        }
+        .float-orb.orb-1 {
+            width: 280px;
+            height: 280px;
+            left: -80px;
+            top: 15%;
+            background: radial-gradient(circle at 30% 30%, rgba(239, 68, 68, 0.5), rgba(239, 68, 68, 0));
+        }
+        .float-orb.orb-2 {
+            width: 330px;
+            height: 330px;
+            right: -120px;
+            bottom: 10%;
+            background: radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.2), rgba(239, 68, 68, 0));
+            animation-delay: -2.8s;
+        }
+        .cinematic-reveal {
+            opacity: 0;
+            transform: translateY(40px) scale(0.98);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .cinematic-reveal.show {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .background-particles {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 8;
+            overflow: hidden;
+        }
+        .bg-particle {
+            position: absolute;
+            bottom: -20px;
+            border-radius: 9999px;
+            background: radial-gradient(circle, rgba(239, 68, 68, 0.95), rgba(239, 68, 68, 0.08));
+            box-shadow: 0 0 12px rgba(239, 68, 68, 0.65);
+            animation: particleRise linear infinite;
+        }
+
+        @keyframes loaderSpin {
+            to { transform: rotate(360deg); }
+        }
+        @keyframes pulseText {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 1; }
+        }
+        @keyframes heroEntrance {
+            from {
+                opacity: 0;
+                transform: translateY(35px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        @keyframes floatOrb {
+            0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+            50% { transform: translate3d(0, -35px, 0) scale(1.08); }
+        }
+
+        @keyframes particleRise {
+            0% {
+                transform: translate3d(0, 0, 0) scale(0.8);
+                opacity: 0;
+            }
+            12% {
+                opacity: 1;
+            }
+            100% {
+                transform: translate3d(0, -115vh, 0) scale(1.15);
+                opacity: 0;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .loader-ring,
+            .loader-text,
+            .hero-cinematic,
+            .float-orb,
+            .cinematic-reveal {
+                animation: none !important;
+                transition: none !important;
+                opacity: 1 !important;
+                transform: none !important;
+            }
+            .cursor-glow,
+            .background-particles {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body class="overflow-x-hidden">
+
+    <div id="page-loader" class="page-loader" aria-hidden="true">
+        <div class="loader-ring"></div>
+        <p class="loader-text">VANDSTAVOR GEN7</p>
+    </div>
+    <div id="scroll-progress" class="scroll-progress" aria-hidden="true"></div>
+    <div id="cursor-glow" class="cursor-glow" aria-hidden="true"></div>
+    <div id="background-particles" class="background-particles" aria-hidden="true"></div>
 
     <nav class="sticky top-0 w-full max-w-full z-[100] py-4 px-6 md:px-12 flex justify-between items-center glass-nav safe-padding">
         <div class="flex items-center gap-2">
@@ -71,6 +237,8 @@
     </div>
 
     <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+    <div class="float-orb orb-1"></div>
+    <div class="float-orb orb-2"></div>
 
     <!-- VIDEO BACKGROUND -->
     <video 
@@ -88,7 +256,7 @@
     <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/60 to-[#0a0a0a] z-0"></div>
 
     <!-- CONTENT -->
-    <div class="relative z-10 text-center px-4" data-aos="fade-up" data-aos-duration="1000">
+    <div class="relative z-10 text-center px-4 hero-cinematic" data-aos="fade-up" data-aos-duration="1000">
         <h4 class="text-red-600 font-bold tracking-[0.3em] mb-4 uppercase">
             Memories & Togetherness
         </h4>
@@ -824,6 +992,12 @@
                     nav.classList.remove('scrolled', 'py-4');
                     nav.classList.add('py-6');
                 }
+
+                if (scrollProgress) {
+                    const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+                    const progress = documentHeight > 0 ? (window.scrollY / documentHeight) * 100 : 0;
+                    scrollProgress.style.width = `${Math.min(progress, 100)}%`;
+                }
             });
 
             const EMAILJS_PUBLIC_KEY = "6NnCFPsUSba3jr4BC";
@@ -844,6 +1018,58 @@
             const subscribeConfirm = document.getElementById('subscribe-confirm');
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
+            const pageLoader = document.getElementById('page-loader');
+            const scrollProgress = document.getElementById('scroll-progress');
+            const cursorGlow = document.getElementById('cursor-glow');
+            const backgroundParticles = document.getElementById('background-particles');
+
+            setTimeout(() => {
+                pageLoader?.classList.add('hidden');
+            }, 850);
+
+            if (backgroundParticles) {
+                const particleCount = 26;
+                for (let i = 0; i < particleCount; i += 1) {
+                    const particle = document.createElement('span');
+                    particle.className = 'bg-particle';
+                    const size = Math.random() * 4 + 2;
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                    particle.style.left = `${Math.random() * 100}%`;
+                    particle.style.animationDuration = `${Math.random() * 6 + 5}s`;
+                    particle.style.animationDelay = `${Math.random() * 5}s`;
+                    particle.style.opacity = `${Math.random() * 0.5 + 0.2}`;
+                    backgroundParticles.appendChild(particle);
+                }
+            }
+
+            const revealTargets = document.querySelectorAll('section h2, section p, .card-hover, .vehicleSwiper .swiper-slide, footer > div');
+            revealTargets.forEach((el) => el.classList.add('cinematic-reveal'));
+
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('show');
+                    }
+                });
+            }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+
+            revealTargets.forEach((el) => revealObserver.observe(el));
+
+            if (cursorGlow) {
+                window.addEventListener('mousemove', (event) => {
+                    cursorGlow.style.left = `${event.clientX}px`;
+                    cursorGlow.style.top = `${event.clientY}px`;
+                });
+
+                window.addEventListener('mouseout', () => {
+                    cursorGlow.style.opacity = '0';
+                });
+
+                window.addEventListener('mouseover', () => {
+                    cursorGlow.style.opacity = '1';
+                });
+            }
 
             const setMobileMenuState = (isOpen) => {
                 if (!mobileMenuButton || !mobileMenu) {
