@@ -250,6 +250,50 @@
             background: radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.2), rgba(239, 68, 68, 0));
             animation-delay: -2.8s;
         }
+        .hero-video-track {
+            width: 200%;
+            height: 100%;
+            display: flex;
+            transition: transform 0.75s ease;
+        }
+        .hero-video-slide {
+            width: 50%;
+            height: 100%;
+            position: relative;
+            flex-shrink: 0;
+        }
+        .hero-video-slide video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.42;
+        }
+        .hero-video-dots {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.65rem;
+            margin-top: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .hero-video-dot {
+            width: 0.8rem;
+            height: 0.8rem;
+            border-radius: 9999px;
+            border: 1px solid rgba(255, 255, 255, 0.55);
+            background: rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+        .hero-video-dot:hover {
+            transform: scale(1.12);
+            border-color: rgba(239, 68, 68, 0.9);
+        }
+        .hero-video-dot.active {
+            background: #ef4444;
+            border-color: #ef4444;
+            box-shadow: 0 0 12px rgba(239, 68, 68, 0.8);
+        }
         .cinematic-reveal {
             opacity: 0;
             transform: translateY(40px) scale(0.98);
@@ -373,16 +417,21 @@
     <div class="float-orb orb-2"></div>
 
     <!-- VIDEO BACKGROUND -->
-    <video 
-        class="absolute inset-0 w-full h-full object-cover z-0 opacity-40"
-        autoplay
-        muted
-        loop
-        playsinline
-    >
-        <source src="https://res.cloudinary.com/ddc1rmczp/video/upload/v1769928783/WhatsApp_Video_2026-01-25_at_15.41.21_tgtuhn.mp4" type="video/mp4">
-        Browser kamu tidak mendukung video.
-    </video>
+    <!-- VIDEO BACKGROUND CAROUSEL -->
+    <div id="hero-video-track" class="absolute inset-0 z-0 hero-video-track" aria-hidden="true">
+        <div class="hero-video-slide">
+            <video id="hero-video-1" muted playsinline preload="metadata" autoplay>
+                <source src="https://res.cloudinary.com/ddc1rmczp/video/upload/v1769928783/WhatsApp_Video_2026-01-25_at_15.41.21_tgtuhn.mp4" type="video/mp4">
+                Browser kamu tidak mendukung video.
+            </video>
+        </div>
+        <div class="hero-video-slide">
+            <video id="hero-video-2" muted playsinline preload="metadata">
+                <source src="https://res.cloudinary.com/ddc1rmczp/video/upload/v1770015194/WhatsApp_Video_2026-01-26_at_09.17.44_tncdkz.mp4" type="video/mp4">
+                Browser kamu tidak mendukung video.
+            </video>
+        </div>
+    </div>
 
     <!-- GRADIENT OVERLAY -->
     <div class="absolute inset-0 bg-gradient-to-b from-transparent via-black/60 to-[#0a0a0a] z-0"></div>
@@ -401,6 +450,11 @@
         <p class="max-w-2xl mx-auto text-gray-400 text-lg md:text-xl mb-10">
             "Togetherness and closeness are the keys to strong cooperation in living through the twists and turns of life".
         </p>
+
+        <div id="hero-video-dots" class="hero-video-dots" aria-label="Pilih video background">
+            <button type="button" class="hero-video-dot active" data-slide-index="0" aria-label="Pilih video pertama"></button>
+            <button type="button" class="hero-video-dot" data-slide-index="1" aria-label="Pilih video kedua"></button>
+        </div>
 
         <div class="flex flex-wrap justify-center gap-4">
             <a href="#members"
@@ -1180,7 +1234,7 @@
             window.addEventListener('hashchange', updateNavState);
             updateNavState();
 
-            const EMAILJS_PUBLIC_KEY = "6QdcdrRykmREnpl_y";
+            const EMAILJS_PUBLIC_KEY = "a5qz2mVC2AmGGUP4_";
             const EMAILJS_SERVICE_ID = "service_2kj89mo";
             const EMAILJS_TEMPLATE_ID = "template_dpd8y8z";
 
@@ -1207,10 +1261,63 @@
             const membersGrid = document.getElementById('members-grid');
             const memberSearchInput = document.getElementById('member-search-input');
             const membersEmptyState = document.getElementById('members-empty-state');
+            const heroVideoTrack = document.getElementById('hero-video-track');
+            const heroVideos = Array.from(heroVideoTrack?.querySelectorAll('video') || []);
+            const heroVideoDots = Array.from(document.querySelectorAll('.hero-video-dot'));
+
+            const setupHeroVideoCarousel = () => {
+                if (!heroVideoTrack || heroVideos.length === 0) return;
+                let activeIndex = 0;
+
+                const updateHeroVideoUI = () => {
+                    heroVideoTrack.style.transform = `translateX(-${activeIndex * 50}%)`;
+                    heroVideoDots.forEach((dot, index) => {
+                        dot.classList.toggle('active', index === activeIndex);
+                    });
+                };
+
+                const playVideo = (index) => {
+                    const safeIndex = (index + heroVideos.length) % heroVideos.length;
+                    activeIndex = safeIndex;
+                    updateHeroVideoUI();
+
+                    heroVideos.forEach((video, videoIndex) => {
+                        if (videoIndex !== activeIndex) {
+                            video.pause();
+                            video.currentTime = 0;
+                        }
+                    });
+
+                    const activeVideo = heroVideos[activeIndex];
+                    if (activeVideo) {
+                        const playPromise = activeVideo.play();
+                        if (playPromise?.catch) {
+                            playPromise.catch(() => {});
+                        }
+                    }
+                };
+
+                heroVideos.forEach((video, index) => {
+                    video.addEventListener('ended', () => {
+                        playVideo(index + 1);
+                    });
+                });
+
+                heroVideoDots.forEach((dot) => {
+                    dot.addEventListener('click', () => {
+                        const index = Number(dot.dataset.slideIndex || 0);
+                        playVideo(index);
+                    });
+                });
+
+                playVideo(0);
+            };
 
             setTimeout(() => {
                 pageLoader?.classList.add('hidden');
             }, 850);
+
+            setupHeroVideoCarousel();
 
             if (backgroundParticles) {
                 const particleCount = 26;
